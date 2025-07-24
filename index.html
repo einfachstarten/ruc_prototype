@@ -1,0 +1,1041 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#ffcd00">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="ADAC OEM">
+    <meta name="mobile-web-app-capable" content="yes">
+    <title>ADAC - OEM Datenplattform Zustimmung</title>
+    <link rel="manifest" href="data:application/json;base64,eyJuYW1lIjoiQURBQyBPRU0gRGF0ZW5wbGF0dGZvcm0iLCJzaG9ydF9uYW1lIjoiQURBQyBPRU0iLCJzdGFydF91cmwiOiIuLyIsImRpc3BsYXkiOiJzdGFuZGFsb25lIiwiYmFja2dyb3VuZF9jb2xvciI6IiNmOGY5ZmEiLCJ0aGVtZV9jb2xvciI6IiNmZmNkMDAiLCJpY29ucyI6W3sic3JjIjoiZGF0YTppbWFnZS9wbmc7YmFzZTY0LGlWQk9SdzBLR2dvQUFBQU5TVWhFVWdBQUFOUUFBQURVQ0FZQUFBQUJ0WG55QUFBQUFYR1NSTkFBQWRFaUFBd1ZCR0RBa0FBQUNOVXFHUz0iLCJzaXplcyI6IjE5MngxOTIiLCJ0eXBlIjoiaW1hZ2UvcG5nIn0seyJzcmMiOiJkYXRhOmltYWdlL3BuZztiYXNlNjQsaVZCT1J3MEtHZ29BQUFBTlNVaEVVZ0FBQTFBQUFBRUFDQVLBQUFCRVR5R0FBQUJSbERRVlI0blBQZHhqQUFCUWpOU2w4QUFBQzVVbEVRVlJnZTJyZ3lzRHg5Nks3cGMrYXVXN1k0TnRvTnQwb0c5aXhPaUQrVG9Kb2lNSEF0SmhyQURJdEFnYURhQUlDU0VLa0pNQ3FYeVhKRUN5WXB4V1owZERGZlJ6Tmc3ZlVyQT0iLCJzaXplcyI6IjUxMng1MTIiLCJ0eXBlIjoiaW1hZ2UvcG5nIn1dfQ==">
+    <link rel="apple-touch-icon" sizes="180x180" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAYAAAA9zQYyAAAAAXNSR0IArs4c6QAABYhJREFUeF7t3U9oW3Ucx/H3l6RJm7RN27Rp2rRJ07RJ27Rp2rRJ27Rp2rRJ27Rp2rRJ0yZt0yZN2rRp2rRJ27Rp0yZt0yZN26ZN26ZN26ZN26ZN0yZt0yZN26ZN26ZN0yZNm7RJ0yZt0yZNmzRt0rRJ0yZt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rZJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0A==">
+    <link rel="apple-touch-icon" sizes="152x152" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJgAAACYCAYAAAAYwiAhAAAAAXNSR0IArs4c6QAABThJREFUeF7t3U9oW3Ucx/H3l6RJm7RN27Rp2rRJ0yZt0rRJ0yZt0yZt0rRJ0yZt0yZt0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0yZt0yZt0yZt0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0A==">
+    <link rel="apple-touch-icon" sizes="120x120" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHgAAAB4CAYAAAA5ZDbSAAAAAXNSR0IArs4c6QAABEhJREFUeF7t3U9oW3Ucx/H3l6RJm7RN27Rp2rRJ0yZt0yZt0yZt0yZt0yZt0yZt0yZt0yZt0yZt0yZt0yZt0yZt0yZt0yZt0yZt0yZt0yZt0yZt0yZt0yZt0yZt0yZt0yZt0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0A==">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            color: #000;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            background: #ffcd00;
+            color: #000;
+            padding: 20px;
+            border-radius: 12px 12px 0 0;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(255, 205, 0, 0.3);
+        }
+
+        .header h1 {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .header p {
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+        .content {
+            background: white;
+            flex: 1;
+            padding: 30px;
+            border-radius: 0 0 12px 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .step {
+            display: none;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        .step.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .step-header {
+            background: #ffcd00;
+            color: #000;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #000;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #ffcd00;
+            box-shadow: 0 0 0 3px rgba(255, 205, 0, 0.2);
+        }
+
+        .btn {
+            background: #ffcd00;
+            color: #000;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .btn:hover {
+            background: #e6b800;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 205, 0, 0.4);
+        }
+
+        .btn:disabled {
+            background: #ccc;
+            color: #666;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .verification-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .verification-item {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            margin-bottom: 10px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #e9ecef;
+            transition: all 0.5s;
+        }
+
+        .verification-item.checking {
+            border-left-color: #ffcd00;
+            background: #fff9e6;
+        }
+
+        .verification-item.success {
+            border-left-color: #28a745;
+            background: #f0fff0;
+        }
+
+        .verification-icon {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            margin-right: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .verification-icon.pending {
+            background: #e9ecef;
+            color: #6c757d;
+        }
+
+        .verification-icon.checking {
+            background: #ffcd00;
+            color: #000;
+            animation: pulse 1.5s infinite;
+        }
+
+        .verification-icon.success {
+            background: #28a745;
+            color: white;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .verification-text {
+            font-weight: 500;
+        }
+
+        .vin-display {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border-left: 4px solid #ffcd00;
+        }
+
+        .vin-display strong {
+            color: #ffcd00;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            width: auto;
+            margin-right: 12px;
+            margin-top: 4px;
+            transform: scale(1.2);
+        }
+
+        .checkbox-group label {
+            flex: 1;
+            margin-bottom: 0;
+            font-weight: normal;
+            line-height: 1.5;
+        }
+
+        .consent-text {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border-left: 4px solid #ffcd00;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .success-message {
+            text-align: center;
+            padding: 30px;
+        }
+
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            background: #28a745;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: white;
+            font-size: 40px;
+        }
+
+        .progress-bar {
+            height: 6px;
+            background: #e9ecef;
+            border-radius: 3px;
+            margin-bottom: 30px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: #ffcd00;
+            transition: width 0.5s ease;
+            border-radius: 3px;
+        }
+
+        .install-prompt {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            right: 20px;
+            background: #ffcd00;
+            color: #000;
+            padding: 15px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            display: none;
+            align-items: center;
+            gap: 10px;
+            z-index: 1000;
+            font-size: 14px;
+        }
+
+        .install-prompt button {
+            background: #000;
+            color: #ffcd00;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        .install-prompt .close-btn {
+            background: transparent;
+            color: #000;
+            font-size: 20px;
+            padding: 0;
+            width: 30px;
+            height: 30px;
+            margin-left: auto;
+        }
+
+        .safari-instructions {
+            font-size: 12px;
+            line-height: 1.4;
+            margin-top: 8px;
+        }
+
+        .safari-instructions strong {
+            color: #000;
+        }
+
+        /* Mobile Optimierungen */
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+            
+            .header h1 {
+                font-size: 20px;
+            }
+            
+            .step-header {
+                font-size: 16px;
+                padding: 12px 15px;
+            }
+            
+            .form-group input {
+                font-size: 16px; /* Verhindert Zoom auf iOS */
+            }
+
+            .scanner-frame {
+                width: 250px;
+                height: 70px;
+            }
+
+            .scanner-instructions p {
+                font-size: 14px;
+            }
+
+            .scanner-close-btn {
+                top: 15px;
+                right: 15px;
+                width: 35px;
+                height: 35px;
+                font-size: 20px;
+            }
+        }
+
+        /* PWA Standalone Mode */
+        @media (display-mode: standalone) {
+            body {
+                padding-top: env(safe-area-inset-top);
+                padding-bottom: env(safe-area-inset-bottom);
+            }
+        }
+
+        /* VIN Scanner Styles */
+        .scanner-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            z-index: 2000;
+        }
+
+        #cameraVideo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .scanner-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .scanner-frame {
+            position: relative;
+            width: 280px;
+            height: 80px;
+            border: 2px solid #ffcd00;
+            border-radius: 8px;
+            background: rgba(255, 205, 0, 0.1);
+            margin-bottom: 40px;
+        }
+
+        .scanner-line {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #ffcd00, transparent);
+            animation: scanLine 2s ease-in-out infinite;
+            transform: translateY(-50%);
+        }
+
+        @keyframes scanLine {
+            0%, 100% { transform: translateY(-50%) scaleX(0.8); opacity: 0.5; }
+            50% { transform: translateY(-50%) scaleX(1.2); opacity: 1; }
+        }
+
+        .scanner-corners {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .corner {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #ffcd00;
+        }
+
+        .corner.top-left {
+            top: -3px;
+            left: -3px;
+            border-right: none;
+            border-bottom: none;
+        }
+
+        .corner.top-right {
+            top: -3px;
+            right: -3px;
+            border-left: none;
+            border-bottom: none;
+        }
+
+        .corner.bottom-left {
+            bottom: -3px;
+            left: -3px;
+            border-right: none;
+            border-top: none;
+        }
+
+        .corner.bottom-right {
+            bottom: -3px;
+            right: -3px;
+            border-left: none;
+            border-top: none;
+        }
+
+        .scanner-instructions {
+            text-align: center;
+            color: white;
+        }
+
+        .scanner-instructions p {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .scanner-status {
+            font-size: 14px;
+            color: #ffcd00;
+            font-weight: bold;
+        }
+
+        .scanner-close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .scan-option {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .scan-btn {
+            background: #28a745;
+            margin-bottom: 15px;
+        }
+
+        .scan-btn:hover {
+            background: #218838;
+        }
+
+        .or-divider {
+            color: #666;
+            font-size: 14px;
+            position: relative;
+            margin: 15px 0;
+        }
+
+        .or-divider::before,
+        .or-divider::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 45%;
+            height: 1px;
+            background: #e9ecef;
+        }
+
+        .or-divider::before {
+            left: 0;
+        }
+
+        .or-divider::after {
+            right: 0;
+        }
+
+        .scanner-success {
+            animation: scanSuccess 0.5s ease-out;
+        }
+
+        @keyframes scanSuccess {
+            0% { background: rgba(255, 205, 0, 0.1); }
+            50% { background: rgba(40, 167, 69, 0.3); }
+            100% { background: rgba(255, 205, 0, 0.1); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>ADAC OEM Datenplattform</h1>
+            <p>Zustimmung zur Fahrzeugdatenübertragung</p>
+        </div>
+
+        <div class="content">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill" style="width: 25%"></div>
+            </div>
+
+            <!-- Schritt 1: VIN Scanner -->
+            <div class="step active" id="step1">
+                <div class="step-header">Schritt 1: Fahrzeugidentifikation</div>
+                
+                <div class="scanner-container" id="scannerContainer" style="display: none;">
+                    <video id="cameraVideo" autoplay playsinline></video>
+                    <div class="scanner-overlay">
+                        <div class="scanner-frame">
+                            <div class="scanner-line"></div>
+                            <div class="scanner-corners">
+                                <div class="corner top-left"></div>
+                                <div class="corner top-right"></div>
+                                <div class="corner bottom-left"></div>
+                                <div class="corner bottom-right"></div>
+                            </div>
+                        </div>
+                        <div class="scanner-instructions">
+                            <p>VIN auf dem Fahrzeugschein positionieren</p>
+                            <div class="scanner-status" id="scannerStatus">Suche VIN...</div>
+                        </div>
+                        <button class="scanner-close-btn" onclick="stopScanner()">×</button>
+                    </div>
+                </div>
+                
+                <div class="input-section" id="inputSection">
+                    <div class="scan-option">
+                        <button class="btn scan-btn" onclick="startScanner()">
+                            📷 VIN scannen
+                        </button>
+                        <div class="or-divider">oder</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="vinInput">VIN manuell eingeben:</label>
+                        <input type="text" 
+                               id="vinInput" 
+                               placeholder="z.B. WBABA91060ALxxxxx" 
+                               maxlength="17"
+                               style="text-transform: uppercase; letter-spacing: 1px; font-family: monospace;">
+                        <small style="color: #666; font-size: 12px; margin-top: 5px; display: block;">
+                            Bitte geben Sie die 17-stellige VIN aus Ihrem Fahrzeugschein ein
+                        </small>
+                    </div>
+
+                    <button class="btn" onclick="processVIN()">VIN bestätigen</button>
+                </div>
+            </div>
+
+            <!-- Schritt 2: Systemprüfung -->
+            <div class="step" id="step2">
+                <div class="step-header">Schritt 2: Systemkompatibilität prüfen</div>
+                
+                <div class="vin-display">
+                    <strong>Fahrzeug-VIN:</strong> <span id="displayVIN"></span>
+                </div>
+
+                <ul class="verification-list">
+                    <li class="verification-item" id="verification1">
+                        <div class="verification-icon pending" id="icon1">?</div>
+                        <div class="verification-text">Fahrzeug OEM-kompatibel</div>
+                    </li>
+                    <li class="verification-item" id="verification2">
+                        <div class="verification-icon pending" id="icon2">?</div>
+                        <div class="verification-text">SIM-Karte aktiv</div>
+                    </li>
+                    <li class="verification-item" id="verification3">
+                        <div class="verification-icon pending" id="icon3">?</div>
+                        <div class="verification-text">OEM Account verknüpft</div>
+                    </li>
+                </ul>
+
+                <button class="btn" id="continueBtn" onclick="goToStep3()" style="display: none;">Weiter</button>
+            </div>
+
+            <!-- Schritt 3: Login -->
+            <div class="step" id="step3">
+                <div class="step-header">Schritt 3: ADAC Mitglieds-Login</div>
+                
+                <div class="form-group">
+                    <label for="memberNumber">Mitgliedsnummer:</label>
+                    <input type="text" 
+                           id="memberNumber" 
+                           placeholder="z.B. 1234567"
+                           maxlength="7">
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Passwort:</label>
+                    <input type="password" 
+                           id="password" 
+                           placeholder="Ihr ADAC Passwort">
+                </div>
+
+                <button class="btn" onclick="processLogin()">Anmelden</button>
+            </div>
+
+            <!-- Schritt 4: Zustimmung -->
+            <div class="step" id="step4">
+                <div class="step-header">Schritt 4: Zustimmung zur Datenübertragung</div>
+                
+                <div class="consent-text">
+                    <strong>Zweck der Datenübertragung:</strong><br>
+                    Die Übertragung Ihrer Fahrzeugdaten dient der Verbesserung unserer Pannenhilfe-Services. 
+                    Durch die Analyse von Fahrzeugdaten können wir Ihnen schnellere und zielgerichtetere 
+                    Hilfe im Pannenfall bieten.<br><br>
+                    
+                    <strong>Übertragene Daten:</strong><br>
+                    • Fahrzeugstatus und Diagnosedaten<br>
+                    • GPS-Position im Pannenfall<br>
+                    • Batteriestatus und Motorparameter<br>
+                    • Fahrzeugidentifikation (VIN)
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="consentCheckbox">
+                    <label for="consentCheckbox">
+                        Ich bestätige hiermit meine Zustimmung zur Übertragung meiner Fahrzeugdaten 
+                        an ADAC zum Zweck der Verbesserung der Pannenhilfe-Services. Mir ist bewusst, 
+                        dass ich diese Zustimmung jederzeit widerrufen kann.
+                    </label>
+                </div>
+
+                <button class="btn" id="finalSubmit" onclick="submitConsent()" disabled>
+                    Zustimmung erteilen
+                </button>
+            </div>
+
+            <!-- Erfolgsmeldung -->
+            <div class="step" id="stepSuccess">
+                <div class="success-message">
+                    <div class="success-icon">✓</div>
+                    <h2 style="color: #28a745; margin-bottom: 15px;">Zustimmung erfolgreich erteilt!</h2>
+                    <p style="margin-bottom: 20px;">
+                        Ihre Fahrzeugdaten werden ab sofort zur Verbesserung unserer Pannenhilfe-Services 
+                        übertragen. Sie können diese Zustimmung jederzeit in Ihrem ADAC Mitgliedsbereich widerrufen.
+                    </p>
+                    <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; font-size: 14px;">
+                        <strong>Referenz-Nr:</strong> RUC-2025-<span id="referenceNumber"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Install Prompt -->
+        <div class="install-prompt" id="installPrompt">
+            <div id="installContent">
+                <span>📱 App installieren für schnelleren Zugriff</span>
+                <button onclick="installApp()">Installieren</button>
+            </div>
+            <button class="close-btn" onclick="hideInstallPrompt()">×</button>
+        </div>
+    </div>
+
+    <script>
+        let currentStep = 1;
+        let scannedVIN = '';
+        let deferredPrompt;
+        let cameraStream = null;
+
+        // VIN Scanner Funktionen
+        async function startScanner() {
+            try {
+                const scannerContainer = document.getElementById('scannerContainer');
+                const inputSection = document.getElementById('inputSection');
+                const cameraVideo = document.getElementById('cameraVideo');
+                const scannerStatus = document.getElementById('scannerStatus');
+                
+                // UI umschalten
+                inputSection.style.display = 'none';
+                scannerContainer.style.display = 'block';
+                
+                // Kamera-Zugriff anfordern
+                cameraStream = await navigator.mediaDevices.getUserMedia({
+                    video: { 
+                        facingMode: 'environment', // Rückkamera bevorzugen
+                        width: { ideal: 1280 },
+                        height: { ideal: 720 }
+                    }
+                });
+                
+                cameraVideo.srcObject = cameraStream;
+                
+                // Simulierter Scan-Prozess
+                setTimeout(() => {
+                    scannerStatus.textContent = 'VIN erkannt...';
+                }, 1500);
+                
+                setTimeout(() => {
+                    scannerStatus.textContent = 'VIN wird verarbeitet...';
+                    document.querySelector('.scanner-frame').classList.add('scanner-success');
+                }, 3000);
+                
+                setTimeout(() => {
+                    // Gemockte VIN für Demo
+                    const mockVINs = [
+                        'WBABA91060AL12345',
+                        'WDD2130331A123456',
+                        'VF1BA0B0H12345678',
+                        'WAUZZZ4G5EN123456'
+                    ];
+                    const randomVIN = mockVINs[Math.floor(Math.random() * mockVINs.length)];
+                    
+                    scannedVIN = randomVIN;
+                    document.getElementById('vinInput').value = randomVIN;
+                    
+                    stopScanner();
+                    
+                    // Automatisch zum nächsten Schritt
+                    setTimeout(() => {
+                        processVIN();
+                    }, 500);
+                }, 4500);
+                
+            } catch (error) {
+                console.error('Kamera-Zugriff fehlgeschlagen:', error);
+                alert('Kamera-Zugriff nicht möglich. Bitte VIN manuell eingeben.');
+                stopScanner();
+            }
+        }
+
+        function stopScanner() {
+            const scannerContainer = document.getElementById('scannerContainer');
+            const inputSection = document.getElementById('inputSection');
+            
+            // Kamera-Stream stoppen
+            if (cameraStream) {
+                cameraStream.getTracks().forEach(track => track.stop());
+                cameraStream = null;
+            }
+            
+            // UI zurücksetzen
+            scannerContainer.style.display = 'none';
+            inputSection.style.display = 'block';
+            
+            // Scanner-Status zurücksetzen
+            document.getElementById('scannerStatus').textContent = 'Suche VIN...';
+            document.querySelector('.scanner-frame').classList.remove('scanner-success');
+        }
+
+        // Browser Detection
+        function isSafari() {
+            return /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+        }
+
+        function isIOS() {
+            return /iPad|iPhone|iPod/.test(navigator.userAgent);
+        }
+
+        function isStandalone() {
+            return window.matchMedia('(display-mode: standalone)').matches || 
+                   window.navigator.standalone === true;
+        }
+
+        // PWA Installation
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            showInstallPrompt();
+        });
+
+        function showInstallPrompt() {
+            if (isStandalone()) return; // Bereits installiert
+            
+            const installPrompt = document.getElementById('installPrompt');
+            const installContent = document.getElementById('installContent');
+            
+            if (isSafari() || isIOS()) {
+                // Safari/iOS spezifische Anweisungen
+                installContent.innerHTML = `
+                    <div>
+                        <div>📱 <strong>App installieren:</strong></div>
+                        <div class="safari-instructions">
+                            Tippen Sie auf <strong>Teilen</strong> <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.05 4.11c-.05.23-.09.46-.09.7 0 1.66 1.34 3 3 3s3-1.34 3-3-1.34-3-3-3z"/></svg> unten, dann auf <strong>"Zum Home-Bildschirm"</strong>
+                        </div>
+                    </div>
+                `;
+            } else {
+                // Chrome/Android Standard
+                installContent.innerHTML = `
+                    <span>📱 App installieren für schnelleren Zugriff</span>
+                    <button onclick="installApp()">Installieren</button>
+                `;
+            }
+            
+            installPrompt.style.display = 'flex';
+        }
+
+        function hideInstallPrompt() {
+            document.getElementById('installPrompt').style.display = 'none';
+            localStorage.setItem('installPromptDismissed', 'true');
+        }
+
+        function installApp() {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                deferredPrompt.userChoice.then((choiceResult) => {
+                    if (choiceResult.outcome === 'accepted') {
+                        console.log('App wurde installiert');
+                    }
+                    deferredPrompt = null;
+                    hideInstallPrompt();
+                });
+            } else if (isSafari() || isIOS()) {
+                // Für Safari - Anweisungen sind bereits angezeigt
+                console.log('Safari: Nutzer muss manuell installieren');
+            }
+        }
+
+        // Fallback: Install-Prompt nach 3 Sekunden anzeigen wenn noch nicht installiert
+        setTimeout(() => {
+            if (!isStandalone() && 
+                !localStorage.getItem('installPromptDismissed')) {
+                showInstallPrompt();
+            }
+        }, 3000);
+
+        // Nach Installation ausblenden
+        window.addEventListener('appinstalled', () => {
+            hideInstallPrompt();
+            console.log('PWA wurde installiert');
+        });
+
+        // Progress aktualisieren
+        function updateProgress(step) {
+            const progressFill = document.getElementById('progressFill');
+            const percentage = (step / 4) * 100;
+            progressFill.style.width = percentage + '%';
+        }
+
+        // Schritt wechseln
+        function showStep(stepNumber) {
+            // Kamera stoppen wenn aktiv
+            if (cameraStream) {
+                stopScanner();
+            }
+            
+            document.querySelectorAll('.step').forEach(step => {
+                step.classList.remove('active');
+            });
+            document.getElementById('step' + stepNumber).classList.add('active');
+            currentStep = stepNumber;
+            updateProgress(stepNumber);
+        }
+
+        // Cleanup beim Verlassen der Seite
+        window.addEventListener('beforeunload', () => {
+            if (cameraStream) {
+                cameraStream.getTracks().forEach(track => track.stop());
+            }
+        });
+
+        // Cleanup bei Visibility Change (App in Hintergrund)
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden && cameraStream) {
+                stopScanner();
+            }
+        });
+
+        // VIN verarbeiten
+        function processVIN() {
+            const vinInput = document.getElementById('vinInput');
+            const vin = vinInput.value.trim().toUpperCase();
+            
+            if (vin.length !== 17) {
+                alert('Bitte geben Sie eine gültige 17-stellige VIN ein.');
+                return;
+            }
+
+            scannedVIN = vin;
+            document.getElementById('displayVIN').textContent = vin;
+            showStep(2);
+            startVerification();
+        }
+
+        // Systemprüfung starten
+        function startVerification() {
+            const verifications = [
+                { id: 'verification1', icon: 'icon1', delay: 1000 },
+                { id: 'verification2', icon: 'icon2', delay: 2500 },
+                { id: 'verification3', icon: 'icon3', delay: 4000 }
+            ];
+
+            verifications.forEach((verification, index) => {
+                setTimeout(() => {
+                    // Checking-Status
+                    const verificationEl = document.getElementById(verification.id);
+                    const iconEl = document.getElementById(verification.icon);
+                    
+                    verificationEl.classList.add('checking');
+                    iconEl.classList.remove('pending');
+                    iconEl.classList.add('checking');
+                    iconEl.textContent = '...';
+
+                    // Nach 1 Sekunde auf Success
+                    setTimeout(() => {
+                        verificationEl.classList.remove('checking');
+                        verificationEl.classList.add('success');
+                        iconEl.classList.remove('checking');
+                        iconEl.classList.add('success');
+                        iconEl.textContent = '✓';
+
+                        // Wenn alle durch sind, Weiter-Button zeigen
+                        if (index === verifications.length - 1) {
+                            setTimeout(() => {
+                                document.getElementById('continueBtn').style.display = 'block';
+                            }, 500);
+                        }
+                    }, 1000);
+                }, verification.delay);
+            });
+        }
+
+        // Zu Schritt 3
+        function goToStep3() {
+            showStep(3);
+        }
+
+        // Login verarbeiten
+        function processLogin() {
+            const memberNumber = document.getElementById('memberNumber').value;
+            const password = document.getElementById('password').value;
+
+            if (memberNumber !== '1234567') {
+                alert('Ungültige Mitgliedsnummer. Bitte verwenden Sie: 1234567');
+                return;
+            }
+
+            if (password !== 'pass1234') {
+                alert('Ungültiges Passwort. Bitte verwenden Sie: pass1234');
+                return;
+            }
+
+            showStep(4);
+        }
+
+        // Zustimmung-Checkbox überwachen
+        document.getElementById('consentCheckbox').addEventListener('change', function() {
+            const submitBtn = document.getElementById('finalSubmit');
+            submitBtn.disabled = !this.checked;
+        });
+
+        // Finale Zustimmung
+        function submitConsent() {
+            // Referenznummer generieren
+            const referenceNumber = Date.now().toString().slice(-8);
+            document.getElementById('referenceNumber').textContent = referenceNumber;
+            
+            showStep('Success');
+        }
+
+        // Eingabe-Validierung für VIN
+        document.getElementById('vinInput').addEventListener('input', function() {
+            this.value = this.value.toUpperCase().replace(/[^A-Z0-9]/g, '');
+        });
+
+        // Eingabe-Validierung für Mitgliedsnummer
+        document.getElementById('memberNumber').addEventListener('input', function() {
+            this.value = this.value.replace(/[^0-9]/g, '');
+        });
+
+        // PWA Service Worker registrieren
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('data:application/javascript;base64,Y29uc3QgQ0FDSEVfTkFNRSA9ICdhZGFjLW9lbS12MSc7CmNvbnN0IHVybHNUb0NhY2hlID0gWycvJ107CgpzZWxmLmFkZEV2ZW50TGlzdGVuZXIoJ2luc3RhbGwnLCBmdW5jdGlvbihldmVudCkgewogIGV2ZW50LndhaXRVbnRpbCgKICAgIGNhY2hlcy5vcGVuKENBQ0hFX05BTUUpCiAgICAgIC50aGVuKGZ1bmN0aW9uKGNhY2hlKSB7CiAgICAgICAgcmV0dXJuIGNhY2hlLmFkZEFsbCh1cmxzVG9DYWNoZSk7CiAgICAgIH0pCiAgKTsKfSk7CgpzZWxmLmFkZEV2ZW50TGlzdGVuZXIoJ2ZldGNoJywgZnVuY3Rpb24oZXZlbnQpIHsKICBldmVudC5yZXNwb25kV2l0aCgKICAgIGNhY2hlcy5tYXRjaChldmVudC5yZXF1ZXN0KQogICAgICAudGhlbihmdW5jdGlvbihyZXNwb25zZSkgewogICAgICAgIGlmIChyZXNwb25zZSkgewogICAgICAgICAgcmV0dXJuIHJlc3BvbnNlOwogICAgICAgIH0KICAgICAgICByZXR1cm4gZmV0Y2goZXZlbnQucmVxdWVzdCk7CiAgICAgIH0pCiAgKTsKfSk7')
+                .then(() => console.log('Service Worker registriert'))
+                .catch(err => console.log('Service Worker Registrierung fehlgeschlagen', err));
+        }
+    </script>
+</body>
+</html>
