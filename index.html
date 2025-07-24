@@ -836,7 +836,7 @@
 
         .info-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 15px;
         }
 
@@ -845,6 +845,11 @@
             padding: 12px;
             border-radius: 8px;
             border-left: 4px solid #ffcd00;
+            transition: opacity 0.3s ease;
+        }
+
+        .info-item[style*="display: none"] {
+            display: none !important;
         }
 
         .info-label {
@@ -1054,26 +1059,11 @@
                 <div class="technical-info">
                     <h4>🔧 VIN-Struktur Details</h4>
                     <div class="tech-details">
-                        <span><strong>WMI (1-3):</strong> <span id="vinWMI">-</span></span>
-                        <span><strong>VDS (4-9):</strong> <span id="vinVDS">-</span></span>
-                        <span><strong>VIS (10-17):</strong> <span id="vinVIS">-</span></span>
+                        <span><strong>WMI (1-3):</strong> <span id="vinWMI">-</span> <small>Hersteller-ID</small></span>
+                        <span><strong>VDS (4-9):</strong> <span id="vinVDS">-</span> <small>Fahrzeug-Typ</small></span>
+                        <span><strong>VIS (10-17):</strong> <span id="vinVIS">-</span> <small>Jahr & Serie</small></span>
                         <span><strong>Jahr-Code:</strong> <span id="vinYearCode">-</span></span>
                         <span><strong>Werk-Code:</strong> <span id="vinPlantCode">-</span></span>
-                        <span><strong>Serie:</strong> <span id="vehicleSerial">-</span></span>
-                    </div>
-                </div>
-
-                <div class="decoder-status">
-                    <span class="status-icon">🧮</span>
-                    <span class="status-text">Präzise manuelle VIN-Dekodierung</span>
-                </div>
-
-                <div class="technical-info">
-                    <h4>🔧 Technische VIN-Details</h4>
-                    <div class="tech-details">
-                        <span><strong>WMI:</strong> <span id="vinWMI">-</span></span>
-                        <span><strong>VDS:</strong> <span id="vinVDS">-</span></span>
-                        <span><strong>Werk:</strong> <span id="vinPlant">-</span></span>
                     </div>
                 </div>
 
@@ -1352,36 +1342,44 @@
             const plantCode = vin.charAt(10);
             const serialNumber = vin.substring(11, 17);
 
-            let manufacturerInfo = vinDatabase[wmi] || {
-                manufacturer: 'Unbekannt',
-                country: 'Unbekannt',
-                region: 'Unbekannt'
-            };
-
-            if (manufacturerInfo.manufacturer === 'Unbekannt') {
-                const wmiPrefix = wmi.substring(0, 2);
-                for (const key in vinDatabase) {
-                    if (key.startsWith(wmiPrefix)) {
-                        manufacturerInfo = vinDatabase[key];
-                        break;
-                    }
+            let manufacturerInfo = wmiDatabase[wmi];
+            if (!manufacturerInfo) {
+                const wmi2 = wmi.substring(0, 2);
+                manufacturerInfo = Object.keys(wmiDatabase).find(key => key.startsWith(wmi2));
+                if (manufacturerInfo) {
+                    manufacturerInfo = wmiDatabase[manufacturerInfo];
                 }
             }
 
-            const modelYear = yearCodes[yearCode] || 'Unbekannt';
+            if (!manufacturerInfo) {
+                manufacturerInfo = { make: 'Unbekannt', country: 'Unbekannt' };
+            }
+
+            const regionCode = vin.charAt(0);
+            const region = regionCodes[regionCode] || 'Unbekannt';
+
+            const modelYearOptions = modelYearCodes[yearCode];
+            let modelYear = 'Unbekannt';
+            if (modelYearOptions) {
+                const currentYear = new Date().getFullYear();
+                modelYear = modelYearOptions.find(year => year <= currentYear + 1) || modelYearOptions[0];
+            }
+
+            const plant = plantCodes[plantCode] ? `${plantCodes[plantCode]} (${plantCode})` : `Werk ${plantCode}`;
 
             return {
+                vin: vin,
                 wmi: wmi,
                 vds: vds,
                 vis: vis,
                 yearCode: yearCode,
                 plantCode: plantCode,
                 serialNumber: serialNumber,
-                manufacturer: manufacturerInfo.manufacturer,
+                manufacturer: manufacturerInfo.make,
                 country: manufacturerInfo.country,
-                region: manufacturerInfo.region,
+                region: region,
                 modelYear: modelYear,
-                plant: `Werk ${plantCode}`
+                plant: plant
             };
         }
 
@@ -1812,47 +1810,7 @@
             // Felder mit dekodierten Daten füllen
             setTimeout(() => {
                 console.log('Fülle Felder aus...');
-                
-                const decodedVINEl = document.getElementById('decodedVIN');
-                const vehicleMakeEl = document.getElementById('vehicleMake');
-                const vehicleCountryEl = document.getElementById('vehicleCountry');
-                const vehicleRegionEl = document.getElementById('vehicleRegion');
-                const vehicleYearEl = document.getElementById('vehicleYear');
-                const vehiclePlantEl = document.getElementById('vehiclePlant');
-                const vehicleSerialEl = document.getElementById('vehicleSerial');
-                const vinWMIEl = document.getElementById('vinWMI');
-                const vinVDSEl = document.getElementById('vinVDS');
-                const vinVISEl = document.getElementById('vinVIS');
-                const vinYearCodeEl = document.getElementById('vinYearCode');
-                const vinPlantCodeEl = document.getElementById('vinPlantCode');
-                
-                // Debug: Prüfe ob Elemente existieren
-                console.log('Elemente gefunden:', {
-                    decodedVIN: !!decodedVINEl,
-                    vehicleMake: !!vehicleMakeEl,
-                    vehicleCountry: !!vehicleCountryEl,
-                    vehicleRegion: !!vehicleRegionEl,
-                    vehicleYear: !!vehicleYearEl,
-                    vehiclePlant: !!vehiclePlantEl,
-                    vehicleSerial: !!vehicleSerialEl
-                });
-                
-                // Setze Werte
-                if (decodedVINEl) decodedVINEl.textContent = vin;
-                if (vehicleMakeEl) vehicleMakeEl.textContent = decoded.manufacturer;
-                if (vehicleCountryEl) vehicleCountryEl.textContent = decoded.country;
-                if (vehicleRegionEl) vehicleRegionEl.textContent = decoded.region;
-                if (vehicleYearEl) vehicleYearEl.textContent = decoded.modelYear;
-                if (vehiclePlantEl) vehiclePlantEl.textContent = decoded.plant;
-                if (vehicleSerialEl) vehicleSerialEl.textContent = decoded.serialNumber;
-                
-                // Technische VIN-Details
-                if (vinWMIEl) vinWMIEl.textContent = decoded.wmi;
-                if (vinVDSEl) vinVDSEl.textContent = decoded.vds;
-                if (vinVISEl) vinVISEl.textContent = decoded.vis;
-                if (vinYearCodeEl) vinYearCodeEl.textContent = decoded.modelYearCode;
-                if (vinPlantCodeEl) vinPlantCodeEl.textContent = decoded.plantCode;
-                
+                displayVINData(decoded);
                 console.log('Felder ausgefüllt');
             }, 100);
         }
@@ -1891,20 +1849,34 @@
         });
 
         function displayVINData(vinData) {
+            document.getElementById('decodedVIN').textContent = vinData.vin;
             document.getElementById('vehicleMake').textContent = vinData.manufacturer;
-            document.getElementById('vehicleCountry').textContent = vinData.country;
-            document.getElementById('vehicleRegion').textContent = vinData.region;
-            document.getElementById('vehicleYear').textContent = vinData.modelYear;
-            document.getElementById('vehiclePlant').textContent = vinData.plant;
             document.getElementById('vehicleSerial').textContent = vinData.serialNumber;
+
+            const conditionalFields = [
+                { id: 'vehicleCountry', value: vinData.country, default: 'Unbekannt' },
+                { id: 'vehicleRegion', value: vinData.region, default: 'Unbekannt' },
+                { id: 'vehicleYear', value: vinData.modelYear, default: 'Unbekannt' },
+                { id: 'vehiclePlant', value: vinData.plant, default: 'Werk' }
+            ];
+
+            conditionalFields.forEach(field => {
+                const element = document.getElementById(field.id);
+                const parentItem = element.closest('.info-item');
+
+                if (field.value && field.value !== field.default && field.value !== 'Unbekannt') {
+                    element.textContent = field.value;
+                    parentItem.style.display = 'block';
+                } else {
+                    parentItem.style.display = 'none';
+                }
+            });
 
             document.getElementById('vinWMI').textContent = vinData.wmi;
             document.getElementById('vinVDS').textContent = vinData.vds;
             document.getElementById('vinVIS').textContent = vinData.vis;
-            document.getElementById('vinYearCode').textContent = vinData.modelYearCode;
-            document.getElementById('vinPlantCode').textContent = vinData.plantCode;
-
-            document.getElementById('decodedVIN').textContent = vinData.vin;
+            document.getElementById('vinYearCode').textContent = vinData.yearCode || vinData.vin.charAt(9);
+            document.getElementById('vinPlantCode').textContent = vinData.plantCode || vinData.vin.charAt(10);
         }
 
         // VIN verarbeiten (für manuelle Eingabe)
@@ -1934,23 +1906,23 @@
         // Systemprüfung starten
         function startVerification() {
             const verifications = [
-                { id: 'verification1', icon: 'icon1', delay: 1000 },
-                { id: 'verification2', icon: 'icon2', delay: 2500 },
-                { id: 'verification3', icon: 'icon3', delay: 4000 }
+                { id: 'verification1', icon: 'icon1', delay: 500, duration: 1200 },
+                { id: 'verification2', icon: 'icon2', delay: 1000, duration: 1000 },
+                { id: 'verification3', icon: 'icon3', delay: 1500, duration: 800 }
             ];
 
             verifications.forEach((verification, index) => {
                 setTimeout(() => {
-                    // Checking-Status
                     const verificationEl = document.getElementById(verification.id);
                     const iconEl = document.getElementById(verification.icon);
-                    
+
+                    // Checking Phase
                     verificationEl.classList.add('checking');
                     iconEl.classList.remove('pending');
                     iconEl.classList.add('checking');
                     iconEl.textContent = '...';
 
-                    // Nach 1 Sekunde auf Success
+                    // Success Phase nach duration
                     setTimeout(() => {
                         verificationEl.classList.remove('checking');
                         verificationEl.classList.add('success');
@@ -1958,13 +1930,12 @@
                         iconEl.classList.add('success');
                         iconEl.textContent = '✓';
 
-                        // Wenn alle durch sind, Weiter-Button zeigen
                         if (index === verifications.length - 1) {
                             setTimeout(() => {
                                 document.getElementById('continueBtn').style.display = 'block';
-                            }, 500);
+                            }, 300);
                         }
-                    }, 1000);
+                    }, verification.duration);
                 }, verification.delay);
             });
         }
