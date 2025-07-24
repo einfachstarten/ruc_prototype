@@ -1390,21 +1390,6 @@
             // Nur prüfen: 17 Zeichen, keine I/O/Q, alphanumerisch
             return /^[A-HJ-NPR-Z0-9]{17}$/.test(vin);
         }
-        function displayVINData(vinData) {
-            document.getElementById('manufacturer').textContent = vinData.manufacturer;
-            document.getElementById('country').textContent = vinData.country;
-            document.getElementById('region').textContent = vinData.region;
-            document.getElementById('modelYear').textContent = vinData.modelYear;
-            document.getElementById('plant').textContent = vinData.plant;
-            document.getElementById('serialNumber').textContent = vinData.serialNumber;
-
-            document.getElementById('wmi').textContent = vinData.wmi;
-            document.getElementById('vds').textContent = vinData.vds;
-            document.getElementById('vis').textContent = vinData.vis;
-            document.getElementById('yearCode').textContent = vinData.yearCode;
-            document.getElementById('plantCode').textContent = vinData.plantCode;
-            document.getElementById('series').textContent = vinData.serialNumber;
-        }
 
         // Check-Digit Validierung entfernt für einfachere Tests
         function validateVINCheckDigit(vin) {
@@ -1887,34 +1872,6 @@
             updateProgress(stepNumber);
         }
 
-        // Debug-Toggle Funktion
-        function toggleDebug() {
-            const debugPanel = document.getElementById('scannerDebug');
-            const toggleBtn = document.getElementById('debugToggle');
-            
-            if (debugPanel.style.display === 'none') {
-                debugPanel.style.display = 'block';
-                toggleBtn.textContent = '❌';
-            } else {
-                debugPanel.style.display = 'none';
-                toggleBtn.textContent = '🔍';
-            }
-        }
-        function showStep(stepNumber) {
-            // Kamera stoppen wenn aktiv
-            if (cameraStream) {
-                stopScanner();
-            }
-            
-            document.querySelectorAll('.step').forEach(step => {
-                step.classList.remove('active');
-            });
-            document.getElementById('step' + stepNumber).classList.add('active');
-            currentStep = stepNumber;
-            updateProgress(stepNumber);
-        }
-
-        // Debug-Toggle Funktion
 
         // Cleanup beim Verlassen der Seite
         window.addEventListener('beforeunload', () => {
@@ -1932,6 +1889,23 @@
                 stopScanner();
             }
         });
+
+        function displayVINData(vinData) {
+            document.getElementById('vehicleMake').textContent = vinData.manufacturer;
+            document.getElementById('vehicleCountry').textContent = vinData.country;
+            document.getElementById('vehicleRegion').textContent = vinData.region;
+            document.getElementById('vehicleYear').textContent = vinData.modelYear;
+            document.getElementById('vehiclePlant').textContent = vinData.plant;
+            document.getElementById('vehicleSerial').textContent = vinData.serialNumber;
+
+            document.getElementById('vinWMI').textContent = vinData.wmi;
+            document.getElementById('vinVDS').textContent = vinData.vds;
+            document.getElementById('vinVIS').textContent = vinData.vis;
+            document.getElementById('vinYearCode').textContent = vinData.modelYearCode;
+            document.getElementById('vinPlantCode').textContent = vinData.plantCode;
+
+            document.getElementById('decodedVIN').textContent = vinData.vin;
+        }
 
         // VIN verarbeiten (für manuelle Eingabe)
         function processVIN() {
@@ -1951,11 +1925,10 @@
                 displayVINData(vinData);
             }
 
-            showStep(2);
-
-            setTimeout(() => {
+            showLoadingOverlay('Verarbeite VIN-Daten...', () => {
+                smoothShowStep(2);
                 startVerification();
-            }, 500);
+            });
         }
 
         // Systemprüfung starten
@@ -2003,6 +1976,12 @@
             });
         }
 
+        function goToStep4() {
+            showLoadingOverlay('Bereite Login vor...', () => {
+                smoothShowStep(4);
+            });
+        }
+
         // Login verarbeiten mit smooth transition
         function processLogin() {
             const memberNumber = document.getElementById('memberNumber').value;
@@ -2028,87 +2007,16 @@
             // Referenznummer generieren
             const referenceNumber = Date.now().toString().slice(-8);
             document.getElementById('referenceNumber').textContent = referenceNumber;
-            
+
             showLoadingOverlay('Verarbeite Zustimmung...', () => {
                 smoothShowStep('Success');
             });
         }
 
-        // Systemprüfung starten
-        function startVerification() {
-            const verifications = [
-                { id: 'verification1', icon: 'icon1', delay: 1000 },
-                { id: 'verification2', icon: 'icon2', delay: 2500 },
-                { id: 'verification3', icon: 'icon3', delay: 4000 }
-            ];
-
-            verifications.forEach((verification, index) => {
-                setTimeout(() => {
-                    // Checking-Status
-                    const verificationEl = document.getElementById(verification.id);
-                    const iconEl = document.getElementById(verification.icon);
-                    
-                    verificationEl.classList.add('checking');
-                    iconEl.classList.remove('pending');
-                    iconEl.classList.add('checking');
-                    iconEl.textContent = '...';
-
-                    // Nach 1 Sekunde auf Success
-                    setTimeout(() => {
-                        verificationEl.classList.remove('checking');
-                        verificationEl.classList.add('success');
-                        iconEl.classList.remove('checking');
-                        iconEl.classList.add('success');
-                        iconEl.textContent = '✓';
-
-                        // Wenn alle durch sind, Weiter-Button zeigen
-                        if (index === verifications.length - 1) {
-                            setTimeout(() => {
-                                document.getElementById('continueBtn').style.display = 'block';
-                            }, 500);
-                        }
-                    }, 1000);
-                }, verification.delay);
-            });
-        }
-
-        // Zu Schritt 3
-        function goToStep3() {
-            showStep(3);
-        }
-
-        // Login verarbeiten
-        function processLogin() {
-            const memberNumber = document.getElementById('memberNumber').value;
-            const password = document.getElementById('password').value;
-
-            if (memberNumber !== '1234567') {
-                alert('Ungültige Mitgliedsnummer. Bitte verwenden Sie: 1234567');
-                return;
-            }
-
-            if (password !== 'pass1234') {
-                alert('Ungültiges Passwort. Bitte verwenden Sie: pass1234');
-                return;
-            }
-
-            showStep(4);
-        }
-
-        // Zustimmung-Checkbox überwachen
         document.getElementById('consentCheckbox').addEventListener('change', function() {
             const submitBtn = document.getElementById('finalSubmit');
             submitBtn.disabled = !this.checked;
         });
-
-        // Finale Zustimmung
-        function submitConsent() {
-            // Referenznummer generieren
-            const referenceNumber = Date.now().toString().slice(-8);
-            document.getElementById('referenceNumber').textContent = referenceNumber;
-            
-            showStep('Success');
-        }
 
         // Eingabe-Validierung für VIN
         document.getElementById('vinInput').addEventListener('input', function() {
