@@ -1197,6 +1197,23 @@
         let deferredPrompt;
         let cameraStream = null;
 
+        const vinDatabase = {
+            WBA: { manufacturer: 'BMW', country: 'Deutschland', region: 'Europa' },
+            WDD: { manufacturer: 'Mercedes-Benz', country: 'Deutschland', region: 'Europa' },
+            VF1: { manufacturer: 'Renault', country: 'Frankreich', region: 'Europa' },
+            WAU: { manufacturer: 'Audi', country: 'Deutschland', region: 'Europa' },
+            WVW: { manufacturer: 'Volkswagen', country: 'Deutschland', region: 'Europa' },
+            JTD: { manufacturer: 'Toyota', country: 'Japan', region: 'Asien' },
+            1FT: { manufacturer: 'Ford', country: 'USA', region: 'Nordamerika' },
+            1G1: { manufacturer: 'Chevrolet', country: 'USA', region: 'Nordamerika' },
+            WBS: { manufacturer: 'BMW M', country: 'Deutschland', region: 'Europa' }
+        };
+
+        const yearCodes = {
+            A: 2010, B: 2011, C: 2012, D: 2013, E: 2014, F: 2015,
+            G: 2016, H: 2017, J: 2018, K: 2019, L: 2020, M: 2021,
+            N: 2022, P: 2023, R: 2024, S: 2025, T: 2026
+        };
         // Präzise VIN-Dekodierung basierend auf Wikipedia-Standard
         
         // WMI-Datenbank (World Manufacturer Identifier) - erste 3 Stellen
@@ -1326,48 +1343,45 @@
 
         // Präzise VIN-Dekodierung
         function decodeVIN(vin) {
+            if (vin.length !== 17) return null;
+
             const wmi = vin.substring(0, 3);
             const vds = vin.substring(3, 9);
             const vis = vin.substring(9, 17);
-            const modelYearChar = vin.charAt(9);
-            const plantChar = vin.charAt(10);
+            const yearCode = vin.charAt(9);
+            const plantCode = vin.charAt(10);
             const serialNumber = vin.substring(11, 17);
 
-            // Hersteller ermitteln
-            const manufacturer = wmiDatabase[wmi] || { 
-                make: `Unbekannt (${wmi})`, 
-                country: regionCodes[vin.charAt(0)] || 'Unbekannt' 
+            let manufacturerInfo = vinDatabase[wmi] || {
+                manufacturer: 'Unbekannt',
+                country: 'Unbekannt',
+                region: 'Unbekannt'
             };
 
-            // Modelljahr ermitteln (wahrscheinlichstes Jahr basierend auf aktuellem Datum)
-            let modelYear = 'Unbekannt';
-            if (modelYearCodes[modelYearChar]) {
-                const possibleYears = modelYearCodes[modelYearChar];
-                const currentYear = new Date().getFullYear();
-                // Wähle das Jahr, das am nächsten zum aktuellen Jahr liegt
-                modelYear = possibleYears.reduce((prev, curr) => 
-                    Math.abs(curr - currentYear) < Math.abs(prev - currentYear) ? curr : prev
-                );
+            if (manufacturerInfo.manufacturer === 'Unbekannt') {
+                const wmiPrefix = wmi.substring(0, 2);
+                for (const key in vinDatabase) {
+                    if (key.startsWith(wmiPrefix)) {
+                        manufacturerInfo = vinDatabase[key];
+                        break;
+                    }
+                }
             }
 
-            // Herstellerwerk ermitteln (falls bekannt)
-            const plant = plantCodes[plantChar] || `Werk ${plantChar}`;
+            const modelYear = yearCodes[yearCode] || 'Unbekannt';
 
             return {
-                vin: vin,
                 wmi: wmi,
                 vds: vds,
                 vis: vis,
-                manufacturer: manufacturer.make,
-                country: manufacturer.country,
-                region: regionCodes[vin.charAt(0)] || 'Unbekannt',
-                modelYear: modelYear,
-                plant: plant,
+                yearCode: yearCode,
+                plantCode: plantCode,
                 serialNumber: serialNumber,
-                // Zusätzliche technische Details
-                isSmallManufacturer: wmi.charAt(2) === '9',
-                modelYearCode: modelYearChar,
-                plantCode: plantChar
+                manufacturer: manufacturerInfo.manufacturer,
+                country: manufacturerInfo.country,
+                region: manufacturerInfo.region,
+                modelYear: modelYear,
+                plant: `Werk ${plantCode}`
             };
         }
 
@@ -1375,6 +1389,21 @@
         function isValidVIN(vin) {
             // Nur prüfen: 17 Zeichen, keine I/O/Q, alphanumerisch
             return /^[A-HJ-NPR-Z0-9]{17}$/.test(vin);
+        }
+        function displayVINData(vinData) {
+            document.getElementById('manufacturer').textContent = vinData.manufacturer;
+            document.getElementById('country').textContent = vinData.country;
+            document.getElementById('region').textContent = vinData.region;
+            document.getElementById('modelYear').textContent = vinData.modelYear;
+            document.getElementById('plant').textContent = vinData.plant;
+            document.getElementById('serialNumber').textContent = vinData.serialNumber;
+
+            document.getElementById('wmi').textContent = vinData.wmi;
+            document.getElementById('vds').textContent = vinData.vds;
+            document.getElementById('vis').textContent = vinData.vis;
+            document.getElementById('yearCode').textContent = vinData.yearCode;
+            document.getElementById('plantCode').textContent = vinData.plantCode;
+            document.getElementById('series').textContent = vinData.serialNumber;
         }
 
         // Check-Digit Validierung entfernt für einfachere Tests
@@ -1908,7 +1937,7 @@
         function processVIN() {
             const vinInput = document.getElementById('vinInput');
             const vin = vinInput.value.trim().toUpperCase();
-            
+
             if (vin.length !== 17) {
                 alert('Bitte geben Sie eine gültige 17-stellige VIN ein.');
                 return;
@@ -1916,12 +1945,17 @@
 
             scannedVIN = vin;
             document.getElementById('displayVIN').textContent = vin;
-            
-            // Smooth transition mit Loading
-            showLoadingOverlay('Verarbeite VIN-Daten...', () => {
-                smoothShowStep(2);
+
+            const vinData = decodeVIN(vin);
+            if (vinData) {
+                displayVINData(vinData);
+            }
+
+            showStep(2);
+
+            setTimeout(() => {
                 startVerification();
-            });
+            }, 500);
         }
 
         // Systemprüfung starten
