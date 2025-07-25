@@ -3,34 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    
-    <!-- PWA Meta Tags -->
     <meta name="theme-color" content="#ffcd00">
-    <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="ADAC OEM">
-    <meta name="application-name" content="ADAC OEM">
-    <meta name="msapplication-TileColor" content="#ffcd00">
-    
+    <meta name="mobile-web-app-capable" content="yes">
     <title>ADAC - OEM Datenplattform Zustimmung</title>
-    
-    <!-- Tesseract.js for OCR -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tesseract.js/2.1.5/tesseract.min.js"></script>
-    
-    <!-- PWA Manifest -->
-    <link rel="manifest" href="data:application/json;charset=utf-8;base64,ewogICJuYW1lIjogIkFEQUMgT0VNIERhdGVucGxhdHRmb3JtIiwKICAic2hvcnRfbmFtZSI6ICJBREFDIE9FTSIsCiAgImRlc2NyaXB0aW9uIjogIlp1c3RpbW11bmcgenVyIEZhaHJ6ZXVnZGF0ZW7DvGJlcnRyYWd1bmciLAogICJzdGFydF91cmwiOiAiLi8iLAogICJzY29wZSI6ICIuLyIsCiAgImRpc3BsYXkiOiAic3RhbmRhbG9uZSIsCiAgIm9yaWVudGF0aW9uIjogInBvcnRyYWl0IiwKICAiYmFja2dyb3VuZF9jb2xvciI6ICIjZmZjZDAwIiwKICAidGhlbWVfY29sb3IiOiAiI2ZmY2QwMCIsCiAgImNhdGVnb3JpZXMiOiBbImF1dG9tb3RpdmUiLCAiYnVzaW5lc3MiXSwKICAibGFuZyI6ICJkZSIsCiAgImljb25zIjogWwogICAgewogICAgICAic3JjIjogImRhdGE6aW1hZ2Uvc3ZnK3htbDtjaGFyc2V0PXV0Zi04LCUzQ3N2ZyUyMHhtbG5zJTNEJTIyaHR0cCUzQSUyRiUyRnd3dy53My5vcmclMkYyMDAwJTJGc3ZnJTIyJTIwdmlld0JveCUzRCUyMjAlMjAwJTIwMTI4JTIwMTI4JTIyJTNFJTNDcmVjdCUyMHdpZHRoJTNEJTIyMTI4JTIyJTIwaGVpZ2h0JTNEJTIyMTI4JTIyJTIwZmlsbCUzRCUyMiUyM2ZmY2QwMCUyMiUyMHJ4JTNEJTIyMTYlMjIlMkYlM0UlM0N0ZXh0JTIweCUzRCUyMjY0JTIyJTIweSUzRCUyMjgwJTIyJTIwZm9udC1mYW1pbHklM0QlMjJBcmlhbCUyQyUyMHNhbnMtc2VyaWYlMjIlMjBmb250LXNpemUlM0QlMjI2MCUyMiUyMGZvbnQtd2VpZ2h0JTNEJTIyYm9sZCUyMiUyMGZpbGwlM0QlMjIlMjMwMDAlMjIlMjB0ZXh0LWFuY2hvciUzRCUyMm1pZGRsZSUyMiUzRUElM0MlMkZ0ZXh0JTNFJTNDJTJGc3ZnJTNFIiwKICAgICAgInNpemVzIjogIjEyOHgxMjgiLAogICAgICAidHlwZSI6ICJpbWFnZS9zdmcreG1sIgogICAgfSwKICAgIHsKICAgICAgInNyYyI6ICJkYXRhOmltYWdlL3N2Zyt4bWw7Y2hhcnNldD11dGYtOCwlM0NzdmclMjB4bWxucyUzRCUyMmh0dHAlM0ElMkYlMkZ3d3cudzMub3JnJTJGMjAwMCUyRnN2ZyUyMiUyMHZpZXdCb3glM0QlMjIwJTIwMCUyMDE5MiUyMDE5MiUyMiUzRSUzQ3JlY3QlMjB3aWR0aCUzRCUyMjE5MiUyMiUyMGhlaWdodCUzRCUyMjE5MiUyMiUyMGZpbGwlM0QlMjIlMjNmZmNkMDAlMjIlMjByeCUzRCUyMjI0JTIyJTJGJTNFJTNDdGV4dCUyMHglM0QlMjI5NiUyMiUyMHklM0QlMjIxMjAlMjIlMjBmb250LWZhbWlseSUzRCUyMkFyaWFsJTJDJTIwc2Fucy1zZXJpZiUyMiUyMGZvbnQtc2l6ZSUzRCUyMjkwJTIyJTIwZm9udC13ZWlnaHQlM0QlMjJib2xkJTIyJTIwZmlsbCUzRCUyMiUyMzAwMCUyMiUyMHRleHQtYW5jaG9yJTNEJTIybWlkZGxlJTIyJTNFQSUzQyUyRnRleHQlM0UlM0MlMkZzdmclM0UiLAogICAgICAic2l6ZXMiOiAiMTkyeDE5MiIsCiAgICAgICJ0eXBlIjogImltYWdlL3N2Zyt4bWwiCiAgICB9LAogICAgewogICAgICAic3JjIjogImRhdGE6aW1hZ2Uvc3ZnK3htbDtjaGFyc2V0PXV0Zi04LCUzQ3N2ZyUyMHhtbG5zJTNEJTIyaHR0cCUzQSUyRiUyRnd3dy53My5vcmclMkYyMDAwJTJGc3ZnJTIyJTIwdmlld0JveCUzRCUyMjAlMjAwJTIwNTEyJTIwNTEyJTIyJTNFJTNDcmVjdCUyMHdpZHRoJTNEJTIyNTEyJTIyJTIwaGVpZ2h0JTNEJTIyNTEyJTIyJTIwZmlsbCUzRCUyMiUyM2ZmY2QwMCUyMiUyMHJ4JTNEJTIyNjQlMjIlMkYlM0UlM0N0ZXh0JTIweCUzRCUyMjI1NiUyMiUyMHklM0QlMjIzMjAlMjIlMjBmb250LWZhbWlseSUzRCUyMkFyaWFsJTJDJTIwc2Fucy1zZXJpZiUyMiUyMGZvbnQtc2l6ZSUzRCUyMjI0MCUyMiUyMGZvbnQtd2VpZ2h0JTNEJTIyYm9sZCUyMiUyMGZpbGwlM0QlMjIlMjMwMDAlMjIlMjB0ZXh0LWFuY2hvciUzRCUyMm1pZGRsZSUyMiUzRUElM0MlMkZ0ZXh0JTNFJTNDJTJGc3ZnJTNFIiwKICAgICAgInNpemVzIjogIjUxMng1MTIiLAogICAgICAidHlwZSI6ICJpbWFnZS9zdmcreG1sIgogICAgfQogIF0sCiAgInByZWZlcl9yZWxhdGVkX2FwcGxpY2F0aW9ucyI6IGZhbHNlCn0=">
-    
-    <!-- Apple Touch Icons -->
-    <link rel="apple-touch-icon" sizes="180x180" href="data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Crect width='180' height='180' fill='%23ffcd00' rx='20'/%3E%3Ctext x='90' y='110' font-family='Arial, sans-serif' font-size='72' font-weight='bold' fill='%23000' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E">
-    <link rel="apple-touch-icon" sizes="152x152" href="data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 152 152'%3E%3Crect width='152' height='152' fill='%23ffcd00' rx='16'/%3E%3Ctext x='76' y='92' font-family='Arial, sans-serif' font-size='60' font-weight='bold' fill='%23000' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E">
-    <link rel="apple-touch-icon" sizes="120x120" href="data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Crect width='120' height='120' fill='%23ffcd00' rx='12'/%3E%3Ctext x='60' y='74' font-family='Arial, sans-serif' font-size='48' font-weight='bold' fill='%23000' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E">
-    <link rel="apple-touch-icon" sizes="76x76" href="data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 76 76'%3E%3Crect width='76' height='76' fill='%23ffcd00' rx='8'/%3E%3Ctext x='38' y='48' font-family='Arial, sans-serif' font-size='30' font-weight='bold' fill='%23000' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E">
-    
-    <!-- Standard Icons -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23ffcd00' rx='4'/%3E%3Ctext x='16' y='22' font-family='Arial, sans-serif' font-size='16' font-weight='bold' fill='%23000' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E">
-    <link rel="icon" type="image/png" sizes="32x32" href="data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23ffcd00' rx='4'/%3E%3Ctext x='16' y='22' font-family='Arial, sans-serif' font-size='16' font-weight='bold' fill='%23000' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E">
-
+    <link rel="manifest" href="data:application/json;base64,eyJuYW1lIjoiQURBQyBPRU0gRGF0ZW5wbGF0dGZvcm0iLCJzaG9ydF9uYW1lIjoiQURBQyBPRU0iLCJzdGFydF91cmwiOiIuLyIsImRpc3BsYXkiOiJzdGFuZGFsb25lIiwiYmFja2dyb3VuZF9jb2xvciI6IiNmOGY5ZmEiLCJ0aGVtZV9jb2xvciI6IiNmZmNkMDAiLCJpY29ucyI6W3sic3JjIjoiZGF0YTppbWFnZS9wbmc7YmFzZTY0LGlWQk9SdzBLR2dvQUFBQU5TVWhFVWdBQUFOUUFBQURVQ0FZQUFBQUJ0WG55QUFBQUFYR1NSTkFBQWRFaUFBd1ZCR0RBa0FBQUNOVXFHUz0iLCJzaXplcyI6IjE5MngxOTIiLCJ0eXBlIjoiaW1hZ2UvcG5nIn0seyJzcmMiOiJkYXRhOmltYWdlL3BuZztiYXNlNjQsaVZCT1J3MEtHZ29BQUFBTlNVaEVVZ0FBQTFBQUFBRUFDQVLBQUFCRVR5R0FBQUJSbERRVlI0blBQZHhqQUFCUWpOU2w4QUFBQzVVbEVRVlJnZTJyZ3lzRHg5Nks3cGMrYXVXN1k0TnRvTnQwb0c5aXhPaUQrVG9Kb2lNSEF0SmhyQURJdEFnYURhQUlDU0VLa0pNQ3FYeVhKRUN5WXB4V1owZERGZlJ6Tmc3ZlVyQT0iLCJzaXplcyI6IjUxMng1MTIiLCJ0eXBlIjoiaW1hZ2UvcG5nIn1dfQ==">
+    <link rel="apple-touch-icon" sizes="180x180" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAYAAAA9zQYyAAAAAXNSR0IArs4c6QAABYhJREFUeF7t3U9oW3Ucx/H3l6RJm7RN27Rp2rRJ07RJ27Rp2rRJ27Rp2rRJ27Rp2rRJ0yZt0yZN2rRp2rRJ27Rp0yZt0yZN26ZN26ZN26ZN26ZN0yZt0yZN26ZN26ZN0yZNm7RJ0yZt0yZNmzRt0rRJ0yZt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rZJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0rRJ0yZNmzRt0A==">
+    <link rel="apple-touch-icon" sizes="152x152" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJgAAACYCAYAAAAYwiAhAAAAAXNSR0IArs4c6QAABThJREFUeF7t3U9oW3Ucx/H3l6RJm7RN27Rp2rRJ0yZt0rRJ0yZt0yZt0rRJ0yZt0yZt0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0yZt0yZt0yZt0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0A==">
+    <link rel="apple-touch-icon" sizes="120x120" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHgAAAB4CAYAAAA5ZDbSAAAAAXNSR0IArs4c6QAABEhJREFUeF7t3U9oW3Ucx/H3l6RJm7RN27Rp2rRJ0yZt0yZt0yZt0yZt0yZt0yZt0yZt0yZt0yZt0yZt0yZt0yZt0yZt0yZt0yZt0yZt0yZt0yZt0yZt0yZt0yZt0yZt0yZt0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0yZt0yZt0rRJ0yZt0A==">
     <style>
         * {
             margin: 0;
@@ -44,42 +27,6 @@
             color: #000;
             line-height: 1.6;
             min-height: 100vh;
-        }
-
-        /* PWA Standalone Mode */
-        @media (display-mode: standalone) {
-            body {
-                padding-top: env(safe-area-inset-top);
-                padding-bottom: env(safe-area-inset-bottom);
-                padding-left: env(safe-area-inset-left);
-                padding-right: env(safe-area-inset-right);
-                user-select: none;
-                -webkit-user-select: none;
-                -webkit-touch-callout: none;
-            }
-            
-            html, body {
-                overscroll-behavior: none;
-            }
-            
-            .container {
-                min-height: 100vh;
-                min-height: 100dvh;
-            }
-        }
-
-        /* App-like button behavior */
-        .btn, button {
-            -webkit-tap-highlight-color: transparent;
-            touch-action: manipulation;
-            user-select: none;
-            min-height: 44px;
-            min-width: 44px;
-        }
-
-        input:focus, button:focus {
-            outline: 3px solid rgba(255, 205, 0, 0.5);
-            outline-offset: 2px;
         }
 
         .container {
@@ -337,60 +284,40 @@
 
         .install-prompt {
             position: fixed;
-            bottom: env(safe-area-inset-bottom, 20px);
-            left: env(safe-area-inset-left, 15px);
-            right: env(safe-area-inset-right, 15px);
-            background: linear-gradient(135deg, #ffcd00 0%, #ffd700 100%);
+            bottom: 20px;
+            left: 20px;
+            right: 20px;
+            background: #ffcd00;
             color: #000;
-            padding: 16px;
-            border-radius: 16px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 0 4px 16px rgba(255, 205, 0, 0.4);
+            padding: 15px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
             display: none;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
             z-index: 1000;
             font-size: 14px;
-            backdrop-filter: blur(10px);
-            animation: slideUpBounce 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            border: 2px solid rgba(255, 255, 255, 0.2);
         }
 
-        @keyframes slideUpBounce {
-            0% { 
-                transform: translateY(100%); 
-                opacity: 0; 
-                scale: 0.8;
-            }
-            60% { 
-                transform: translateY(-10px); 
-                scale: 1.05;
-            }
-            100% { 
-                transform: translateY(0); 
-                opacity: 1; 
-                scale: 1;
-            }
+        .install-prompt button {
+            background: #000;
+            color: #ffcd00;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 12px;
         }
 
         .install-prompt .close-btn {
-            background: rgba(0, 0, 0, 0.1);
+            background: transparent;
             color: #000;
-            border: none;
-            font-size: 18px;
+            font-size: 20px;
             padding: 0;
-            width: 28px;
-            height: 28px;
-            border-radius: 50%;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            width: 30px;
+            height: 30px;
             margin-left: auto;
-            transition: background 0.2s;
-        }
-
-        .install-prompt .close-btn:hover {
-            background: rgba(0, 0, 0, 0.2);
         }
 
         .safari-instructions {
@@ -423,7 +350,7 @@
             }
             
             .form-group input {
-                font-size: 16px;
+                font-size: 16px; /* Verhindert Zoom auf iOS */
             }
 
             .scanner-frame {
@@ -504,6 +431,14 @@
 
             .decoder-status .status-text {
                 font-size: 11px;
+            }
+        }
+
+        /* PWA Standalone Mode */
+        @media (display-mode: standalone) {
+            body {
+                padding-top: env(safe-area-inset-top);
+                padding-bottom: env(safe-area-inset-bottom);
             }
         }
 
@@ -980,6 +915,34 @@
             color: #1976d2;
             font-weight: bold;
         }
+
+        .technical-info {
+            background: #e9ecef;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .technical-info h4 {
+            color: #000;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+
+        .tech-details {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            font-size: 12px;
+            font-family: monospace;
+        }
+
+        .tech-details span {
+            background: white;
+            padding: 6px 10px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+        }
     </style>
 </head>
 <body>
@@ -1137,26 +1100,22 @@
             <div class="step" id="step4">
                 <div class="step-header">Schritt 4: ADAC Mitglieds-Login</div>
                 
-                <form onsubmit="event.preventDefault(); processLogin();">
-                    <div class="form-group">
-                        <label for="memberNumber">Mitgliedsnummer:</label>
-                        <input type="text" 
-                               id="memberNumber" 
-                               placeholder="z.B. 1234567"
-                               maxlength="7"
-                               autocomplete="username">
-                    </div>
+                <div class="form-group">
+                    <label for="memberNumber">Mitgliedsnummer:</label>
+                    <input type="text" 
+                           id="memberNumber" 
+                           placeholder="z.B. 1234567"
+                           maxlength="7">
+                </div>
 
-                    <div class="form-group">
-                        <label for="password">Passwort:</label>
-                        <input type="password" 
-                               id="password" 
-                               placeholder="Ihr ADAC Passwort"
-                               autocomplete="current-password">
-                    </div>
+                <div class="form-group">
+                    <label for="password">Passwort:</label>
+                    <input type="password" 
+                           id="password" 
+                           placeholder="Ihr ADAC Passwort">
+                </div>
 
-                    <button type="submit" class="btn">Anmelden</button>
-                </form>
+                <button class="btn" onclick="processLogin()">Anmelden</button>
             </div>
 
             <!-- Schritt 5: Zustimmung -->
@@ -1216,6 +1175,7 @@
         <div class="install-prompt" id="installPrompt">
             <div id="installContent">
                 <span>📱 App installieren für schnelleren Zugriff</span>
+                <button onclick="installApp()">Installieren</button>
             </div>
             <button class="close-btn" onclick="hideInstallPrompt()">×</button>
         </div>
@@ -1730,70 +1690,49 @@
             document.querySelector('.scanner-frame').classList.remove('scanner-success');
         }
 
-        // Enhanced standalone detection
-        function isStandalone() {
-            return window.matchMedia('(display-mode: standalone)').matches || 
-                   window.navigator.standalone === true ||
-                   document.referrer.includes('android-app://') ||
-                   window.matchMedia('(display-mode: fullscreen)').matches ||
-                   window.matchMedia('(display-mode: minimal-ui)').matches;
+        // Browser Detection
+        function isSafari() {
+            return /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
         }
 
         function isIOS() {
-            return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+            return /iPad|iPhone|iPod/.test(navigator.userAgent);
         }
 
-        function isSafari() {
-            return /^((?!chrome|android).)*safari/i.test(navigator.userAgent) && isIOS();
+        function isStandalone() {
+            return window.matchMedia('(display-mode: standalone)').matches || 
+                   window.navigator.standalone === true;
         }
 
         // PWA Installation
         window.addEventListener('beforeinstallprompt', (e) => {
-            console.log('PWA: Install prompt available');
             e.preventDefault();
             deferredPrompt = e;
-            
-            // Show install prompt after delay if not already standalone
-            if (!isStandalone()) {
-                setTimeout(() => {
-                    showInstallPrompt();
-                }, 5000);
-            }
+            showInstallPrompt();
         });
 
         function showInstallPrompt() {
-            if (isStandalone()) return;
+            if (isStandalone()) return; // Bereits installiert
             
             const installPrompt = document.getElementById('installPrompt');
             const installContent = document.getElementById('installContent');
             
-            if (isSafari()) {
-                // iOS Safari spezifische Anweisungen
+            if (isSafari() || isIOS()) {
+                // Safari/iOS spezifische Anweisungen
                 installContent.innerHTML = `
-                    <div style="flex: 1;">
-                        <div style="font-weight: bold; margin-bottom: 8px;">📱 Als App installieren</div>
-                        <div style="font-size: 12px; line-height: 1.4; color: #333;">
-                            1. Tippen Sie auf das <strong>Teilen</strong>-Symbol 
-                            <svg width="16" height="16" style="vertical-align: middle; margin: 0 4px;" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.05 4.11c-.05.23-.09.46-.09.7 0 1.66 1.34 3 3 3s3-1.34 3-3-1.34-3-3-3z"/>
-                            </svg><br>
-                            2. Wählen Sie <strong>"Zum Home-Bildschirm"</strong>
+                    <div>
+                        <div>📱 <strong>App installieren:</strong></div>
+                        <div class="safari-instructions">
+                            Tippen Sie auf <strong>Teilen</strong> <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.05 4.11c-.05.23-.09.46-.09.7 0 1.66 1.34 3 3 3s3-1.34 3-3-1.34-3-3-3z"/></svg> unten, dann auf <strong>"Zum Home-Bildschirm"</strong>
                         </div>
                     </div>
                 `;
-            } else if (deferredPrompt) {
-                // Chrome/Android
-                installContent.innerHTML = `
-                    <div style="flex: 1;">
-                        <strong>📱 ADAC OEM als App installieren</strong><br>
-                        <small style="color: #666;">Schneller Zugriff direkt vom Homescreen</small>
-                    </div>
-                    <button onclick="installApp()" style="background: #000; color: #ffcd00; border: none; padding: 10px 20px; border-radius: 8px; font-weight: bold; font-size: 14px; cursor: pointer;">
-                        Installieren
-                    </button>
-                `;
             } else {
-                return; // Kein Install-Mechanismus verfügbar
+                // Chrome/Android Standard
+                installContent.innerHTML = `
+                    <span>📱 App installieren für schnelleren Zugriff</span>
+                    <button onclick="installApp()">Installieren</button>
+                `;
             }
             
             installPrompt.style.display = 'flex';
@@ -1801,198 +1740,38 @@
 
         function hideInstallPrompt() {
             document.getElementById('installPrompt').style.display = 'none';
-            localStorage.setItem('installPromptDismissed', Date.now());
+            localStorage.setItem('installPromptDismissed', 'true');
         }
 
         function installApp() {
             if (deferredPrompt) {
                 deferredPrompt.prompt();
                 deferredPrompt.userChoice.then((choiceResult) => {
-                    console.log('Install choice:', choiceResult.outcome);
                     if (choiceResult.outcome === 'accepted') {
-                        console.log('App was installed');
-                        // Erfolgs-Feedback
-                        setTimeout(() => {
-                            if (!isStandalone()) {
-                                alert('🎉 App erfolgreich installiert! Sie finden sie jetzt auf Ihrem Homescreen.');
-                            }
-                        }, 1000);
+                        console.log('App wurde installiert');
                     }
                     deferredPrompt = null;
                     hideInstallPrompt();
                 });
+            } else if (isSafari() || isIOS()) {
+                // Für Safari - Anweisungen sind bereits angezeigt
+                console.log('Safari: Nutzer muss manuell installieren');
             }
         }
 
-        // Installation Success Handler
-        window.addEventListener('appinstalled', (evt) => {
-            console.log('PWA erfolgreich installiert');
+        // Fallback: Install-Prompt nach 3 Sekunden anzeigen wenn noch nicht installiert
+        setTimeout(() => {
+            if (!isStandalone() && 
+                !localStorage.getItem('installPromptDismissed')) {
+                showInstallPrompt();
+            }
+        }, 3000);
+
+        // Nach Installation ausblenden
+        window.addEventListener('appinstalled', () => {
             hideInstallPrompt();
-            
-            // Erfolgs-Animation
-            const successMsg = document.createElement('div');
-            successMsg.innerHTML = `
-                <div style="
-                    position: fixed; 
-                    top: 50%; 
-                    left: 50%; 
-                    transform: translate(-50%, -50%);
-                    background: #28a745; 
-                    color: white; 
-                    padding: 20px 30px; 
-                    border-radius: 12px; 
-                    font-weight: bold;
-                    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
-                    z-index: 9999;
-                    animation: successPulse 0.6s ease-out;
-                ">
-                    🎉 App installiert!<br>
-                    <small style="opacity: 0.9;">Finden Sie auf Ihrem Homescreen</small>
-                </div>
-                <style>
-                    @keyframes successPulse {
-                        0% { transform: translate(-50%, -50%) scale(0.5); opacity: 0; }
-                        50% { transform: translate(-50%, -50%) scale(1.1); }
-                        100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
-                    }
-                </style>
-            `;
-            
-            document.body.appendChild(successMsg);
-            
-            setTimeout(() => {
-                successMsg.remove();
-            }, 3000);
+            console.log('PWA wurde installiert');
         });
-
-        // Native App Verhalten
-        let lastTouchEnd = 0;
-        document.addEventListener('touchend', (e) => {
-            const now = Date.now();
-            if (now - lastTouchEnd <= 300) {
-                e.preventDefault();
-            }
-            lastTouchEnd = now;
-        }, false);
-
-        // Verhindere Kontext-Menü bei langem Drücken im Standalone-Mode
-        window.addEventListener('contextmenu', (e) => {
-            if (isStandalone()) {
-                e.preventDefault();
-            }
-        });
-
-        // App Lifecycle Management
-        document.addEventListener('visibilitychange', () => {
-            if (document.hidden) {
-                console.log('App in Hintergrund');
-                // Kamera stoppen falls aktiv
-                if (cameraStream) {
-                    stopScanner();
-                }
-            } else {
-                console.log('App in Vordergrund');
-            }
-        });
-
-        // Verhindere Pull-to-Refresh in Standalone Mode
-        let touchStartY = 0;
-        document.addEventListener('touchstart', (e) => {
-            touchStartY = e.touches[0].clientY;
-        });
-
-        document.addEventListener('touchmove', (e) => {
-            if (isStandalone() && window.scrollY === 0 && e.touches[0].clientY > touchStartY) {
-                e.preventDefault();
-            }
-        }, { passive: false });
-
-        // Keyboard handling für bessere UX
-        document.addEventListener('focusin', (e) => {
-            if (e.target.tagName === 'INPUT') {
-                // Scroll zu Input falls nötig
-                setTimeout(() => {
-                    e.target.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                }, 300);
-            }
-        });
-
-        // Service Worker für echte PWA-Funktionalität
-        if ('serviceWorker' in navigator) {
-            const swCode = `
-                const CACHE_NAME = 'adac-oem-v1.0';
-                const urlsToCache = [
-                    '/',
-                    './',
-                ];
-                
-                // Install Event
-                self.addEventListener('install', event => {
-                    console.log('SW: Installing...');
-                    event.waitUntil(
-                        caches.open(CACHE_NAME).then(cache => {
-                            console.log('SW: Caching files');
-                            return cache.addAll(urlsToCache);
-                        }).then(() => {
-                            console.log('SW: Install complete');
-                            return self.skipWaiting();
-                        })
-                    );
-                });
-                
-                // Activate Event
-                self.addEventListener('activate', event => {
-                    console.log('SW: Activating...');
-                    event.waitUntil(
-                        caches.keys().then(cacheNames => {
-                            return Promise.all(
-                                cacheNames.map(cacheName => {
-                                    if (cacheName !== CACHE_NAME) {
-                                        console.log('SW: Deleting old cache:', cacheName);
-                                        return caches.delete(cacheName);
-                                    }
-                                })
-                            );
-                        }).then(() => {
-                            console.log('SW: Activate complete');
-                            return self.clients.claim();
-                        })
-                    );
-                });
-                
-                // Fetch Event
-                self.addEventListener('fetch', event => {
-                    if (event.request.method === 'GET') {
-                        event.respondWith(
-                            caches.match(event.request).then(response => {
-                                if (response) {
-                                    console.log('SW: Serving from cache:', event.request.url);
-                                    return response;
-                                }
-                                console.log('SW: Fetching from network:', event.request.url);
-                                return fetch(event.request);
-                            }).catch(() => {
-                                console.log('SW: Offline - serving cached version');
-                                return caches.match('./');
-                            })
-                        );
-                    }
-                });
-            `;
-            
-            const swBlob = new Blob([swCode], { type: 'application/javascript' });
-            const swUrl = URL.createObjectURL(swBlob);
-            
-            navigator.serviceWorker.register(swUrl).then(registration => {
-                console.log('Service Worker registered:', registration.scope);
-                
-                registration.addEventListener('updatefound', () => {
-                    console.log('Service Worker update found');
-                });
-            }).catch(error => {
-                console.log('Service Worker registration failed:', error);
-            });
-        }
 
         // Progress aktualisieren (für 5 Schritte)
         function updateProgress(step) {
@@ -2001,6 +1780,23 @@
             progressFill.style.width = percentage + '%';
         }
 
+        // Test der VIN-Dekodierung beim Laden der Seite
+        window.addEventListener('DOMContentLoaded', () => {
+            console.log('DOM geladen - teste VIN-Dekodierung');
+            const testVIN = 'WVWZZZ7NZHV201424';
+            const testResult = decodeVIN(testVIN);
+            console.log('Test VIN-Dekodierung:', testVIN, '->', testResult);
+        });
+
+        // Debug Test-Funktion
+        function testVINDecoder() {
+            console.log('🧪 TEST: VIN-Decoder wird manuell getestet');
+            const testVIN = 'WVWZZZ7NZHV201424';
+            scannedVIN = testVIN;
+            
+            // Direkt showVINDecoder aufrufen
+            showVINDecoder(testVIN);
+        }
         function showVINDecoder(vin) {
             console.log('showVINDecoder aufgerufen mit VIN:', vin);
             
@@ -2033,6 +1829,7 @@
             currentStep = stepNumber;
             updateProgress(stepNumber);
         }
+
 
         // Cleanup beim Verlassen der Seite
         window.addEventListener('beforeunload', () => {
@@ -2145,9 +1942,8 @@
 
         // Zu Schritt 3 mit smooth transition
         function goToStep3() {
-            showLoadingOverlay('Bereite Systemprüfung vor...', () => {
+            showLoadingOverlay('Bereite ADAC Login vor...', () => {
                 smoothShowStep(3);
-                startVerification();
             });
         }
 
@@ -2202,6 +1998,11 @@
         document.getElementById('memberNumber').addEventListener('input', function() {
             this.value = this.value.replace(/[^0-9]/g, '');
         });
+
+        // PWA Service Worker registrieren (entfernt wegen data: URL Problemen)
+        // if ('serviceWorker' in navigator) {
+        //     navigator.serviceWorker.register('...')
+        // }
     </script>
 </body>
 </html>
